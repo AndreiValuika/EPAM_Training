@@ -31,18 +31,18 @@
                         int temp1 = array[pivot];
                         array[pivot] = array[i];
                         array[i] = temp1;
-                        
                     }
                 }
 
                 pivot++;
-               
                 int temp = array[pivot];
                 array[pivot] = array[right];
                 array[right] = temp;
+               
                 return pivot;
             }
         }
+
         private static int[] QuickSort(int[] array, int left, int right)
         {
             if (left >= right)
@@ -53,8 +53,10 @@
             int pivotIndex = Partition(array, left, right);
             QuickSort(array, left, pivotIndex - 1);
             QuickSort(array, pivotIndex + 1, right);
+
             return array;
         }
+
         private static void Merge(int[] array, int lowIndex, int middleIndex, int highIndex)
         {
             int left = lowIndex;
@@ -95,6 +97,7 @@
                 array[lowIndex + i] = tempArray[i];
             }
         }
+
         private static void MergeSort(int[] array, int lowIndex, int highIndex)
         {
             if (lowIndex < highIndex)
