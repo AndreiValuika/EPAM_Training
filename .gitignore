@@ -328,3 +328,8 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/NET.W.2019.Valuika.01_Console/NET.W.2019.Valuika.01_Console.sln
+/NET.W.2019.Valuika.01_Console/NET.W.2019.Valuika.01_Console.csproj
+/NET.W.2019.Valuika.01_Console/App.config
+/NET.W.2019.Valuika.01_Console/Properties/AssemblyInfo.cs
+/NET.W.2019.Valuika.01_Console
