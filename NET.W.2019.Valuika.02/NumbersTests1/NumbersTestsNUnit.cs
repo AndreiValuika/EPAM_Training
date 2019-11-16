@@ -39,7 +39,7 @@ namespace Numbers.Tests
 
         public int FindNextBiggerNumberTest(int startNumber)
         {
-            int result = Numbers.FindNextBiggerNumber(startNumber, out int workTime);
+            int result = Numbers.FindNextBiggerNumber(startNumber, out int workTimeWatch,out int workTimeSystem);
             return result;
         }
 

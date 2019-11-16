@@ -96,9 +96,14 @@ namespace Numbers
             }
             return tempList.ToArray();
         }
-        public static int FindNextBiggerNumber(int number, out int workTime)
+        public static int FindNextBiggerNumber(int number, out int workTimeWatch,out int workTimeSystem)
         {
             Stopwatch watch = Stopwatch.StartNew();
+            DateTime startTime = DateTime.Now;
+            TimeSpan endTime;
+
+
+
 
             string digitString = number.ToString();
             int digitCount = digitString.Length;
@@ -123,7 +128,8 @@ namespace Numbers
             if (poviteIndex == 0)
             {
                 watch.Stop();
-                workTime = (int)watch.ElapsedMilliseconds;
+                workTimeWatch = (int)watch.ElapsedMilliseconds;
+                workTimeSystem = (int)DateTime.Now.Subtract(startTime).TotalMilliseconds;
                 return -1;
             }
 
@@ -131,7 +137,9 @@ namespace Numbers
             Array.Sort(digitArray, poviteIndex, digitCount - poviteIndex);
 
             watch.Stop();
-            workTime = (int)watch.ElapsedMilliseconds;
+            workTimeWatch = (int)watch.ElapsedMilliseconds;
+            workTimeSystem = (int)DateTime.Now.Subtract(startTime).TotalMilliseconds;
+
             return ArrayToNumber(digitArray);
         }
 
