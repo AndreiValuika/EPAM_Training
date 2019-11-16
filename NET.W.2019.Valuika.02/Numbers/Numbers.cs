@@ -3,12 +3,51 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Numbers
 {
     public class Numbers
     {
+
+        private static double Pow(double a, int pow)
+        {
+            double result = 1;
+            for (int i = 0; i < pow; i++)
+            {
+                result *= a;
+            }
+            return result;
+        }
+
+        private static int GetAccuracy(double eps)
+        {
+            int result = 0;
+            while (eps < 1)
+            {
+                result++;
+                eps *= 10;
+            }
+            return result;
+        }
+        public static double FindNthRoot(double number, int degree, double eps)
+        {
+            if (eps <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            double x0 = 1 + ((number - 1) / 2);
+            double x1 = x0 * (1 - (1 - number / Pow(x0, degree)) / degree);
+
+            while (Math.Abs(x1 - x0) > eps)
+            {
+                x0 = x1;
+                x1 = x0 * (1 - (1 - number / Pow(x0, degree)) / degree);
+            }
+
+            x1 = Math.Round(x1, GetAccuracy(eps));
+            return x1;
+        }
+
 
         private static int ArrayToNumber(int[] array)
         {
@@ -22,42 +61,42 @@ namespace Numbers
             return result;
         }
 
-        private static void SwapNumber(ref int x, ref int y) 
+        private static void SwapNumber(ref int x, ref int y)
         {
             int temp = x;
             x = y;
             y = temp;
         }
 
-        private static bool HasDigit(int number, int digit) 
+        private static bool HasDigit(int number, int digit)
         {
-            if (number<0)
+            if (number < 0)
             {
-                number *=(-1);
+                number *= (-1);
             }
             do
             {
-                if (number%10==digit)
+                if (number % 10 == digit)
                 {
                     return true;
                 }
                 number /= 10;
-            } while (number>0);
+            } while (number > 0);
             return false;
         }
-        public static int[] FilterDigit(int[] array, int filterDigit) 
+        public static int[] FilterDigit(int[] array, int filterDigit)
         {
             IList<int> tempList = new List<int>();
             foreach (int item in array)
             {
-                if (HasDigit(item,filterDigit))
+                if (HasDigit(item, filterDigit))
                 {
                     tempList.Add(item);
                 }
             }
             return tempList.ToArray();
         }
-        public static int FindNextBiggerNumber(int number,out int workTime ) 
+        public static int FindNextBiggerNumber(int number, out int workTime)
         {
             Stopwatch watch = Stopwatch.StartNew();
 
@@ -70,11 +109,11 @@ namespace Numbers
             {
                 digitArray[index++] = Convert.ToInt32(item.ToString());
             }
-            int poviteIndex=0;
+            int poviteIndex = 0;
 
-            for (int i = digitCount-1; i>=1; i--)
+            for (int i = digitCount - 1; i >= 1; i--)
             {
-                if (digitArray[i]>digitArray[i-1])
+                if (digitArray[i] > digitArray[i - 1])
                 {
                     poviteIndex = i;
                     break;
@@ -93,10 +132,10 @@ namespace Numbers
 
             watch.Stop();
             workTime = (int)watch.ElapsedMilliseconds;
-            return ArrayToNumber(digitArray); 
+            return ArrayToNumber(digitArray);
         }
 
-        public static Int32 InsertNumber(int numberSource, int numberIn, int shift,int startIndex) 
+        public static Int32 InsertNumber(int numberSource, int numberIn, int shift, int startIndex)
         {
             if (shift > startIndex)
             {
@@ -105,13 +144,13 @@ namespace Numbers
 
             int size = startIndex - shift + 1;
             int result;
-            CutNumber(ref numberIn, shift,size);
+            CutNumber(ref numberIn, shift, size);
             int mask = ~PreSource(size, shift);
             result = (numberSource & mask) | numberIn;
             return result;
         }
 
-        private static void CutNumber(ref int numberIn, int shift,int size) 
+        private static void CutNumber(ref int numberIn, int shift, int size)
         {
             int mask = ~0;
             mask <<= size;
@@ -119,7 +158,7 @@ namespace Numbers
             numberIn <<= shift;
         }
 
-        private static int PreSource(int size, int shift) 
+        private static int PreSource(int size, int shift)
         {
             int mask = ~0;
             mask <<= size;

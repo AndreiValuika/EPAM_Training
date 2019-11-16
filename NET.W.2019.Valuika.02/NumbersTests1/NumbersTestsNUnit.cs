@@ -43,15 +43,36 @@ namespace Numbers.Tests
             return result;
         }
 
-        [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 },6,
-            Result = new int[] { 67,56,60 })]
+        [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 }, 6,
+            Result = new int[] { 67, 56, 60 })]
         [TestCase(new int[] { 67, 19, 95, 56, 85, 1, -79, 99, 60, 9 }, 9,
-            Result = new int[] { 19, 95, -79,99,9 })]
+            Result = new int[] { 19, 95, -79, 99, 9 })]
         [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 }, 4,
             Result = new int[] { })]
-        public int[] FilterDigitTest(int [] array,int digit)
+        public int[] FilterDigitTest(int[] array, int digit)
         {
             return Numbers.FilterDigit(array, digit);
         }
+
+        [TestCase(1, 5, 0.0001, Result = 1)]
+        [TestCase(8, 3, 0.0001, Result = 2)]
+        [TestCase(0.001, 3, 0.0001, ExpectedResult = 0.1)]
+        [TestCase(0.04100625, 4, 0.0001, ExpectedResult = 0.45)]
+        [TestCase(8, 3, 0.0001, ExpectedResult = 2)]
+        [TestCase(0.0279936, 7, 0.0001, ExpectedResult = 0.6)]
+        [TestCase(0.0081, 4, 0.1, ExpectedResult = 0.3)]
+        [TestCase(-0.008, 3, 0.1, ExpectedResult = -0.2)]
+        [TestCase(0.004241979, 9, 0.00000001, ExpectedResult = 0.545)]
+
+        public double FindNthRootTest(double number, int degree, double precision)
+        {
+            return Numbers.FindNthRoot(number,degree,precision);
+        }
+        [Test]
+        public void FindNthRoot_Number_Degree_Precision_ArgumentOutOfRangeException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Numbers.FindNthRoot(1, -1, -1));
+        }
+
     }
 }
