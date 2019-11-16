@@ -29,6 +29,34 @@ namespace Numbers
             y = temp;
         }
 
+        private static bool HasDigit(int number, int digit) 
+        {
+            if (number<0)
+            {
+                number *=(-1);
+            }
+            do
+            {
+                if (number%10==digit)
+                {
+                    return true;
+                }
+                number /= 10;
+            } while (number>0);
+            return false;
+        }
+        public static int[] FilterDigit(int[] array, int filterDigit) 
+        {
+            IList<int> tempList = new List<int>();
+            foreach (int item in array)
+            {
+                if (HasDigit(item,filterDigit))
+                {
+                    tempList.Add(item);
+                }
+            }
+            return tempList.ToArray();
+        }
         public static int FindNextBiggerNumber(int number,out int workTime ) 
         {
             Stopwatch watch = Stopwatch.StartNew();

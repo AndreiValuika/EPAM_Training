@@ -37,10 +37,21 @@ namespace Numbers.Tests
         [TestCase(10, ExpectedResult = -1)]
         [TestCase(20, ExpectedResult = -1)]
 
-        public int  FindNextBiggerNumberTest(int startNumber)
+        public int FindNextBiggerNumberTest(int startNumber)
         {
             int result = Numbers.FindNextBiggerNumber(startNumber, out int workTime);
             return result;
+        }
+
+        [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 },6,
+            Result = new int[] { 67,56,60 })]
+        [TestCase(new int[] { 67, 19, 95, 56, 85, 1, -79, 99, 60, 9 }, 9,
+            Result = new int[] { 19, 95, -79,99,9 })]
+        [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 }, 4,
+            Result = new int[] { })]
+        public int[] FilterDigitTest(int [] array,int digit)
+        {
+            return Numbers.FilterDigit(array, digit);
         }
     }
 }
