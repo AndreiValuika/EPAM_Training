@@ -39,9 +39,8 @@ namespace Numbers.Tests
 
         public int  FindNextBiggerNumberTest(int startNumber)
         {
-           //int i = 1325468;
-           int result = Numbers.FindNextBiggerNumber(startNumber);
-           return result;
+            int result = Numbers.FindNextBiggerNumber(startNumber, out int workTime);
+            return result;
         }
     }
 }

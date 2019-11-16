@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +29,10 @@ namespace Numbers
             y = temp;
         }
 
-        public static int FindNextBiggerNumber(int number) 
+        public static int FindNextBiggerNumber(int number,out int workTime ) 
         {
+            Stopwatch watch = Stopwatch.StartNew();
+
             string digitString = number.ToString();
             int digitCount = digitString.Length;
             int[] digitArray = new int[digitCount];
@@ -52,12 +55,16 @@ namespace Numbers
 
             if (poviteIndex == 0)
             {
+                watch.Stop();
+                workTime = (int)watch.ElapsedMilliseconds;
                 return -1;
             }
 
             SwapNumber(ref digitArray[poviteIndex], ref digitArray[poviteIndex - 1]);
             Array.Sort(digitArray, poviteIndex, digitCount - poviteIndex);
 
+            watch.Stop();
+            workTime = (int)watch.ElapsedMilliseconds;
             return ArrayToNumber(digitArray); 
         }
 
