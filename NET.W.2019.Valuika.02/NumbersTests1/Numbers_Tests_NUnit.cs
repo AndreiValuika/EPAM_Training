@@ -1,27 +1,30 @@
 ﻿using NUnit.Framework;
-using Numbers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Numbers.Tests
 {
     [TestFixture()]
+    public class Numbers_Tests_NUnit
+    {
+    [Test()]
+        public void FindNextBiggerNumber_Negative_Number_ArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Numbers.FindNextBiggerNumber(-10));
+        }
+    }
     public class NumbersTestsNUnit
     {
         [TestCase(15, 15, 0, 0, ExpectedResult = 15)]
         [TestCase(8, 15, 0, 0, ExpectedResult = 9)]
         [TestCase(8, 15, 3, 8, ExpectedResult = 120)]
         [TestCase(568, 53, 8, 11, ExpectedResult = 1336)]
-        public int InsertNumberTest(int numberSource, int numberIn, int i, int j)
+        public int InsertNumber_Test(int numberSource, int numberIn, int i, int j)
         {
             return Numbers.InsertNumber(numberSource, numberIn, i, j);
         }
 
         [Test]
-        public void InsertNumberTest_Ex()
+        public void InsertNumber_Test_ArgumentOutOfRangeException()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Numbers.InsertNumber(11, 11, 10, 1));
         }
@@ -37,10 +40,18 @@ namespace Numbers.Tests
         [TestCase(10, ExpectedResult = -1)]
         [TestCase(20, ExpectedResult = -1)]
 
-        public int FindNextBiggerNumberTest(int startNumber)
+        public int FindNextBiggerNumber_Test(int number)
         {
-            int result = Numbers.FindNextBiggerNumber(startNumber, out int workTimeWatch,out int workTimeSystem);
-            return result;
+            return Numbers.FindNextBiggerNumber(number);
+        }
+        [Test]
+        public void FindNextBiggerNumber_Time_Test()
+        {
+            int actual = Numbers.FindNextBiggerNumber(1234321, out int timeWatch, out long timeSystem);
+            if ((timeSystem * timeWatch <= 0) || (actual != 1241233))
+            {
+                Assert.Fail($"timeSystem = {timeSystem} \ntimeWatch = {timeWatch}");
+            } 
         }
 
         [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 }, 6,
@@ -49,7 +60,7 @@ namespace Numbers.Tests
             Result = new int[] { 19, 95, -79, 99, 9 })]
         [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 }, 4,
             Result = new int[] { })]
-        public int[] FilterDigitTest(int[] array, int digit)
+        public int[] FilterDigit_Test(int[] array, int digit)
         {
             return Numbers.FilterDigit(array, digit);
         }
@@ -64,7 +75,7 @@ namespace Numbers.Tests
         [TestCase(-0.008, 3, 0.1, ExpectedResult = -0.2)]
         [TestCase(0.004241979, 9, 0.00000001, ExpectedResult = 0.545)]
 
-        public double FindNthRootTest(double number, int degree, double precision)
+        public double FindNthRoot_Test(double number, int degree, double precision)
         {
             return Numbers.FindNthRoot(number,degree,precision);
         }
