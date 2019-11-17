@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="Task_01_InsertNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Task_2_and_3_FindNextBiggerNumber.cs" />
-    <Compile Include="Task_4_FilterDigit.cs" />
-    <Compile Include="Task_5_FindNthRoot.cs" />
+    <Compile Include="Task_02_and_03_FindNextBiggerNumber.cs" />
+    <Compile Include="Task_04_FilterDigit.cs" />
+    <Compile Include="Task_05_FindNthRoot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
