@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Numbers
 {
     public partial class Numbers
     {
         /// <summary>
-        /// Find first biggest number with equale digit. Additionally execution time in millisecond.
+        /// Find first biggest number with equaled digit. Additionally execution time in millisecond.
         /// </summary>
         /// <param name="number"></param>
         /// <param name="workTimeWatch"></param>
         /// <param name="workTimeSystem"></param>
         /// <returns>Desired number or "-1" if desired number non-existent</returns>
-        public static int FindNextBiggerNumber(int number, out int workTimeWatch,
-                                                            out long workTimeSystem)
+        public static int FindNextBiggerNumber(int number, out int workTimeWatch, out long workTimeSystem)
         {
             Stopwatch watch = Stopwatch.StartNew();
             long startTime = DateTime.Now.Ticks;
@@ -26,22 +22,24 @@ namespace Numbers
 
             watch.Stop();
             workTimeWatch = (int)watch.ElapsedTicks;
-            workTimeSystem = DateTime.Now.Ticks-startTime;
+            workTimeSystem = DateTime.Now.Ticks - startTime;
             return result;
         }
+
         /// <summary>
-        /// Find first biggest number with equale digit
+        /// Find first biggest number with equaled digit
         /// </summary>
         /// <param name="number"></param>
         /// <param name="workTimeWatch"></param>
         /// <param name="workTimeSystem"></param>
         /// <returns>Desired number or "-1" if desired number non-existent</returns>
-        public static int FindNextBiggerNumber(int number) 
+        public static int FindNextBiggerNumber(int number)
         {
-            if (number<=0)
+            if (number <= 0)
             {
                 throw new ArgumentException("Number must be positive");
             }
+
             string digitString = number.ToString();
             int digitCount = digitString.Length;
             int[] digitArray = new int[digitCount];
@@ -62,7 +60,7 @@ namespace Numbers
                     break;
                 }
             }
-            //doesn't have the desired conversion
+
             if (poviteIndex == 0)
             {
                 return -1;
@@ -94,7 +92,7 @@ namespace Numbers
         private static int ArrayToNumber(int[] array)
         {
             StringBuilder tempString = new StringBuilder();
-            
+
             foreach (var item in array)
             {
                 tempString.Append(item.ToString());

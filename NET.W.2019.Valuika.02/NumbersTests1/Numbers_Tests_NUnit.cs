@@ -1,17 +1,8 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
+using NUnit.Framework;
 
 namespace Numbers.Tests
 {
-    [TestFixture()]
-    public class Numbers_Tests_NUnit
-    {
-    [Test()]
-        public void FindNextBiggerNumber_Negative_Number_ArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Numbers.FindNextBiggerNumber(-10));
-        }
-    }
     public class NumbersTestsNUnit
     {
         [TestCase(15, 15, 0, 0, ExpectedResult = 15)]
@@ -21,6 +12,12 @@ namespace Numbers.Tests
         public int InsertNumber_Test(int numberSource, int numberIn, int i, int j)
         {
             return Numbers.InsertNumber(numberSource, numberIn, i, j);
+        }
+
+        [Test]
+        public void FindNextBiggerNumber_Negative_Number_ArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Numbers.FindNextBiggerNumber(-10));
         }
 
         [Test]
@@ -44,6 +41,7 @@ namespace Numbers.Tests
         {
             return Numbers.FindNextBiggerNumber(number);
         }
+
         [Test]
         public void FindNextBiggerNumber_Time_Test()
         {
@@ -51,7 +49,7 @@ namespace Numbers.Tests
             if ((timeSystem * timeWatch <= 0) || (actual != 1241233))
             {
                 Assert.Fail($"timeSystem = {timeSystem} \ntimeWatch = {timeWatch}");
-            } 
+            }
         }
 
         [TestCase(new int[] { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 }, 6,
@@ -77,13 +75,13 @@ namespace Numbers.Tests
 
         public double FindNthRoot_Test(double number, int degree, double precision)
         {
-            return Numbers.FindNthRoot(number,degree,precision);
+            return Numbers.FindNthRoot(number, degree, precision);
         }
+
         [Test]
         public void FindNthRoot_Number_Degree_Precision_ArgumentOutOfRangeException()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Numbers.FindNthRoot(1, -1, -1));
         }
-
     }
 }

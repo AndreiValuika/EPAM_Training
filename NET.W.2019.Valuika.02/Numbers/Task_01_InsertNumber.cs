@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace Numbers
 {
@@ -28,14 +24,14 @@ namespace Numbers
             CutNumber(ref numberIn, shift, size);
             int mask = GetMask(size, shift);
 
-            return (numberSource & mask) | numberIn; ;
+            return numberSource & mask | numberIn;
         }
 
         private static void CutNumber(ref int numberIn, int shift, int size)
         {
             int mask = ~0;
             mask <<= size;
-            numberIn &= (~mask);
+            numberIn &= ~mask;
             numberIn <<= shift;
         }
 
