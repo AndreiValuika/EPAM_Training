@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-//using System.Linq;
 
 namespace Numbers
 {
@@ -21,6 +20,7 @@ namespace Numbers
                     tempList.Add(item);
                 }
             }
+
             int[] resultArray = new int[tempList.Count];
             for (int i = 0; i < tempList.Count; i++)
             {
@@ -29,26 +29,31 @@ namespace Numbers
 
             return resultArray;
         }
+
         /// <summary>
         /// Check numbers to involves digit
         /// </summary>
         /// <param name="number">Number</param>
         /// <param name="digit">Digit</param>
+        /// 
         /// <returns>"True" if number involves digit</returns>
         private static bool HasDigit(int number, int digit)
         {
             if (number < 0)
             {
-                number *= (-1);
+                number *= -1;
             }
+
             do
             {
                 if (number % 10 == digit)
                 {
                     return true;
                 }
+
                 number /= 10;
-            } while (number > 0);
+            }
+            while (number > 0);
 
             return false;
         }
