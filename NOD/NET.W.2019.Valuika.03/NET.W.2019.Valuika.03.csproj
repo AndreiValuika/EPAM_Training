@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>NET.W._2019.Valuika._03</RootNamespace>
-  </PropertyGroup>
-
-</Project>
