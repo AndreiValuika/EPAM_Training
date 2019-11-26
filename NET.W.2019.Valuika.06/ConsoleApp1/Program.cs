@@ -14,12 +14,12 @@ namespace ConsoleApp1
                 new int[] { 100 }
             };
 
-            SortJaggedArray.JaggedArray.SortF(test, false);
-            SortJaggedArray.JaggedArray.SortF(test, true);
-            SortJaggedArray.JaggedArray.SortS(test, false);
-            SortJaggedArray.JaggedArray.SortS(test, true);
-            SortJaggedArray.JaggedArray.SortT(test, false);
-            SortJaggedArray.JaggedArray.SortT(test, true);
+            //SortJaggedArray.JaggedArray.SortF(test, false);
+            //SortJaggedArray.JaggedArray.SortF(test, true);
+            //SortJaggedArray.JaggedArray.SortS(test, false);
+            //SortJaggedArray.JaggedArray.SortS(test, true);
+            //SortJaggedArray.JaggedArray.SortT(test, false);
+            //SortJaggedArray.JaggedArray.SortT(test, true);
             Console.WriteLine(test);
         }
     }

@@ -22,12 +22,12 @@ namespace SortJaggedArray
             return sum;
         }
 
-        static bool CompRowsSum(int[] first, int[] second)
+        private static bool CompRowsSum(int[] first, int[] second)
         {
             return SumRow(first) > SumRow(second) ? true : false;
         }
 
-        static bool CompRowsMin(int[] first, int[] second)
+        private static bool CompRowsMin(int[] first, int[] second)
         {
             int minFirst = first[0];
             int minSecond = second[0];
@@ -66,7 +66,7 @@ namespace SortJaggedArray
 
             foreach (var item in second)
             {
-                if (maxSecond > item)
+                if (maxSecond < item)
                 {
                     maxSecond = item;
                 }
@@ -75,16 +75,15 @@ namespace SortJaggedArray
             return maxFirst > maxSecond ? true : false;
         }
 
-
         public static void SortF(int[][] array, bool invert)
         {
             SortFirst(array, invert, CompRowsSum);
         }
-        public static void SortS(int[][] array, bool invert)
+        public static void SortMin(int[][] array, bool invert)
         {
             SortFirst(array, invert, CompRowsMin);
         }
-        public static void SortT(int[][] array, bool invert)
+        public static void SortMax(int[][] array, bool invert)
         {
             SortFirst(array, invert, CompRowsMax);
         }
