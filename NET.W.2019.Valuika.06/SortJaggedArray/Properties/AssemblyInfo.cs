@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PolinimalLib")]
+[assembly: AssemblyTitle("SortJaggedArray")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PolinimalLib")]
+[assembly: AssemblyProduct("SortJaggedArray")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e34ff862-07d9-47ad-baa0-e69a50db139a")]
+[assembly: Guid("91a5db95-1788-4c94-a93b-d2bf2a18cf0c")]
 
 // Version information for an assembly consists of the following four values:
 //
