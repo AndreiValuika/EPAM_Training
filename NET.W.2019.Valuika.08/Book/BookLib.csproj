@@ -46,7 +46,6 @@
     <Compile Include="BookListStorage.cs" />
     <Compile Include="ComparerList.cs" />
     <Compile Include="Filter.cs" />
-    <Compile Include="IBookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,40 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookLib
 {
-    class BookListService:IBookService
+    public class BookListService
     {
-        private readonly BookListStorage bookList;
+        private BookListStorage _bookStorage;
+        private ICollection<Book> _books;
 
-        public bool AddBook(Book book) 
+        public BookListService(BookListStorage bookListStorage)
         {
-            bookList.Add(book);
-            return true; 
+            _bookStorage = bookListStorage;
+            _books = bookListStorage.GetAll();
         }
 
-        public bool RemoveBook(Book book) 
+        public void AddBook(Book book)
         {
-            bookList.Remove(book);
-            return true;
+            foreach (var item in _books)
+            {
+                if (item.Equals(book))
+                {
+                    throw new ArgumentException("Already exists");
+                }
+            }
+
+            _bookStorage.Add(book);
         }
 
-        public Book FindBookByTag(string tag) 
+        public void RemoveBook(Book book)
         {
-            return null;
+            if (!_bookStorage.Remove(book))
+            {
+                throw new ArgumentException("Not found");
+            }
         }
 
-        public IList<Book> SortBooksByTag(string tag) 
+        public ICollection<Book> Sort(IComparer<Book> comparer)
         {
-            return null;
+            ((List<Book>)_books).Sort(comparer);
+            return _books;
         }
 
-        public IList<Book> SortByISBN()
+        public Book FindByTag(Filter filter)
         {
-            throw new NotImplementedException();
+            foreach (var item in _bookStorage.GetAll())
+            {
+                if (filter.IsEquals(item))
+                {
+                    return item;
+                }
+            }
+
+            throw new ArgumentException("Not found");
+        }
+
+        public ICollection<Book> GetAll()
+        {
+            return _books;
+        }
+
+        public void Save()
+        {
+            _bookStorage.Save();
+        }
+
+        public void Load()
+        {
+            _bookStorage.Load();
         }
     }
 }

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookLib
 {
-    public class Book:IEquatable<Book>,IComparable,IComparer<Book>
+    public class Book : IEquatable<Book>, IComparable
     {
-        public Book(string iSBN, string title, string author, string publisher, int pages, int year, float price)
+        public Book(string isbn, string title, string author, string publisher, int pages, int year, float price)
         {
-            ISBN = iSBN;
+            ISBN = isbn;
             Title = title;
             Author = author;
             Publisher = publisher;
@@ -20,17 +16,18 @@ namespace BookLib
         }
 
         public string ISBN { get; set; }
-        public string  Author { get; set; }
-        public string  Title { get; set; }
-        public string Publisher { get; set; }
-        public int Year { get; set; }
-        public int Pages { get; set; }
-        public float Price { get; set; }
 
-        public int Compare(Book x, Book y)
-        {
-            throw new NotImplementedException();
-        }
+        public string Author { get; set; }
+
+        public string Title { get; set; }
+
+        public string Publisher { get; set; }
+
+        public int Year { get; set; }
+
+        public int Pages { get; set; }
+
+        public float Price { get; set; }
 
         public int CompareTo(object obj)
         {
@@ -76,10 +73,11 @@ namespace BookLib
                 return false;
             }
 
-            if (this.ISBN.Equals(other.ISBN)&&
-                this.Author.Equals(other.Author)&&
-                this.Publisher.Equals(other.Publisher)&&
-                this.Pages==other.Pages&&
+            if (this.ISBN.Equals(other.ISBN) &&
+                this.Author.Equals(other.Author) &&
+                this.Title.Equals(other.Title) &&
+                this.Publisher.Equals(other.Publisher) &&
+                this.Pages == other.Pages &&
                 this.Price.Equals(other.Price))
             {
                 return true;
@@ -88,10 +86,11 @@ namespace BookLib
             return false;
         }
 
-        public override int GetHashCode() 
+        public override int GetHashCode()
         {
-          return  ISBN.GetHashCode() + Author.GetHashCode() + Title.GetHashCode();
+            return ISBN.GetHashCode() + Author.GetHashCode() + Title.GetHashCode();
         }
+
         public override string ToString()
         {
             return $"ISBN : {ISBN}, " +
@@ -100,8 +99,7 @@ namespace BookLib
                    $" Publisher: {Publisher}," +
                    $" Year: {Year}, " +
                    $"Number of pages: {Pages}" +
-                   $", Price: {Price}"; 
-                   
+                   $", Price: {Price}";
         }
     }
 }

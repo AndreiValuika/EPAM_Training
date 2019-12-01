@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BookLib
 {
@@ -13,6 +9,7 @@ namespace BookLib
             return x.ISBN.CompareTo(y.ISBN);
         }
     }
+
     public class ByTitle : IComparer<Book>
     {
         public int Compare(Book x, Book y)
@@ -27,6 +24,7 @@ namespace BookLib
             return x.Publisher.CompareTo(y.Publisher);
         }
     }
+
     public class ByAuthor : IComparer<Book>
     {
         public int Compare(Book x, Book y)
@@ -34,6 +32,7 @@ namespace BookLib
             return x.Author.CompareTo(y.Author);
         }
     }
+
     public class ByPages : IComparer<Book>
     {
         public int Compare(Book x, Book y)
@@ -41,6 +40,7 @@ namespace BookLib
             return x.Pages.CompareTo(y.Pages);
         }
     }
+
     public class ByYear : IComparer<Book>
     {
         public int Compare(Book x, Book y)
@@ -48,6 +48,7 @@ namespace BookLib
             return x.Year.CompareTo(y.Year);
         }
     }
+
     public class ByPrice : IComparer<Book>
     {
         public int Compare(Book x, Book y)
@@ -55,4 +56,5 @@ namespace BookLib
             return x.Price.CompareTo(y.Price);
         }
     }
+
 }

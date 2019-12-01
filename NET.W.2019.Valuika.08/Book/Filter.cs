@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookLib
+﻿namespace BookLib
 {
     public class Filter
     {
-        public Filter(string iSBN="", string author="", string title="", string publisher="",
-                      int year=-1, int pages=-1, float price=-1)
+        public Filter(string iSBN = "",
+            string author = "",
+            string title = "",
+            string publisher = "",
+            int year = -1,
+            int pages = -1,
+            float price = -1)
         {
             ISBN = iSBN;
             Author = author;
@@ -21,14 +20,20 @@ namespace BookLib
         }
 
         public string ISBN { get; set; }
+
         public string Author { get; set; }
+
         public string Title { get; set; }
+
         public string Publisher { get; set; }
+
         public int Year { get; set; }
+
         public int Pages { get; set; }
+
         public float Price { get; set; }
 
-        public bool IsEquals(Book book) 
+        public bool IsEquals(Book book)
         {
             if (!string.IsNullOrEmpty(this.ISBN) &&
                 !this.ISBN.Equals(book.ISBN))
@@ -48,18 +53,18 @@ namespace BookLib
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(this.Publisher) && 
+            if (!string.IsNullOrEmpty(this.Publisher) &&
                 !this.Publisher.Equals(book.Publisher))
             {
                 return false;
             }
 
-            if ((this.Year>0) && this.Year!=book.Year)
+            if ((this.Year > 0) && this.Year != book.Year)
             {
                 return false;
             }
 
-            if ((this.Pages>0) && this.Pages!=book.Pages)
+            if ((this.Pages > 0) && this.Pages != book.Pages)
             {
                 return false;
             }
