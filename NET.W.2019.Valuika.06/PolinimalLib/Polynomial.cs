@@ -109,6 +109,20 @@ namespace PolinomialLib
             return first + (-1) * second;
         }
 
+        //public static Polynomial operator *(Polynomial first, Polynomial second)
+        //{
+        //    int resultOrder = first.GetOrder() + second.GetOrder() - 1;
+        //    double[] firstCoef = first.GetCoefficients();
+        //    double[] secondCoef = second.GetCoefficients();
+        //    double[] resultCoef = new double[resultOrder];
+
+        //    for (int i = 0; i < resultOrder; i++)
+        //    {
+                
+        //    }
+
+        //    return new Polynomial(resultForces);
+        //}
         /// <summary>
         /// Overload "*"  polynomial and int;
         /// </summary>

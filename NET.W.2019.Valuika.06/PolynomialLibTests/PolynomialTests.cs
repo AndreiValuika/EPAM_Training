@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace PolinomialLib.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class PolynomialTests
     {
-        [Test()]
+        [Test]
         public void GetOrderTest()
         {
             Assert.Fail();
