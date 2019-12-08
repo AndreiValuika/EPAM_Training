@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalFormat.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookListService.cs" />
     <Compile Include="BookListStorage.cs" />

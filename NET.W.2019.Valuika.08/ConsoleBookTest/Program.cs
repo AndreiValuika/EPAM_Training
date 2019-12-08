@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookLib;
+﻿using BookLib;
+using System;
+using System.Globalization;
 
 namespace ConsoleBookTest
 {
@@ -12,7 +9,7 @@ namespace ConsoleBookTest
         static void Main(string[] args)
         {
             Book book = new Book("1111", "Title1", "Author1", "Publisher1", 20, 1975, 15f);
-           
+
             var storage = new BookListStorage("ListBook.bin");
             var service = new BookListService(storage);
             service.AddBook(book);
@@ -28,10 +25,10 @@ namespace ConsoleBookTest
             service.AddBook(new Book("34534", "Title6", "Author211", "Publisher2", 2000, 1975, 78f));
 
 
-            Filter filterPage = new Filter(pages:2);
-            Console.WriteLine("Find book Pages = 2 : \n\r"+service.FindByTag(filterPage) );
+            Filter filterPage = new Filter(pages: 2);
+            Console.WriteLine("Find book Pages = 2 : \n\r" + service.FindByTag(filterPage));
 
-            Filter filterTitle = new Filter(title:"Title3");
+            Filter filterTitle = new Filter(title: "Title3");
             Console.WriteLine("Find book Title = Title3 : \n\r" + service.FindByTag(filterTitle));
 
 
@@ -57,19 +54,16 @@ namespace ConsoleBookTest
 
             foreach (var item in serviceList)
             {
-                Console.WriteLine(item);
+                Console.WriteLine("--");
+                Console.WriteLine(item.ToString("Full", CultureInfo.InvariantCulture));
+                Console.WriteLine(item.ToString("Full", CultureInfo.CurrentCulture));
+                Console.WriteLine(item.ToString("ATPY", CultureInfo.InvariantCulture));
+                Console.WriteLine("--");
+                Console.WriteLine(String.Format(new BookFormat(), "{0:IAT}", item));
+                Console.WriteLine(String.Format(new BookFormat(), "{0:ATC}", item));
             }
 
-
-
-
             Console.ReadKey();
-            
-            
-            
-            
-           
-                
         }
     }
 }

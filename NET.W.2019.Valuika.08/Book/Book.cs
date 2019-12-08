@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Globalization;
 
 namespace BookLib
 {
-    public class Book : IEquatable<Book>, IComparable
+    public class Book : IEquatable<Book>, IComparable, IFormattable
     {
         public Book(string isbn, string title, string author, string publisher, int pages, int year, float price)
         {
@@ -94,12 +95,42 @@ namespace BookLib
         public override string ToString()
         {
             return $"ISBN : {ISBN}, " +
-                   $"AuthorName: {Author}," +
+                   $"Author: {Author}," +
                    $" Title: {Title}," +
                    $" Publisher: {Publisher}," +
                    $" Year: {Year}, " +
                    $"Number of pages: {Pages}" +
                    $", Price: {Price}";
         }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (ReferenceEquals(formatProvider, null))
+            {
+                formatProvider = CultureInfo.CurrentCulture;
+            }
+
+            if (string.IsNullOrWhiteSpace(format))
+            {
+                format = "Full";
+            }
+
+            switch (format)
+            {
+                case "AT":
+                    return $"Author: {Author}, Title: {Title}";
+                case "ATPY":
+                    return $"Author: {Author}, Title: {Title}, Publisher: {Publisher}, Year: {Year.ToString(formatProvider)}";
+                case "IATPYС":
+                    return $"ISBN: {ISBN}, Author: {Author}, Title: {Title}, Publisher: {Publisher}, Year: {Year.ToString(formatProvider)}, Price: {Price.ToString(formatProvider)}";
+                case "ATPYС":
+                    return $"Author: {Author}, Title: {Title}, Publisher: {Publisher}, Price: {Price.ToString(formatProvider)}";
+                case "Full":
+                    return $"ISBN: {ISBN}, Author: {Author}, Title: {Title}, Publisher: {Publisher}, Year: {Year.ToString(formatProvider)}, Number of pages: {Pages.ToString(formatProvider)}, Price: {Price.ToString(formatProvider)}";
+                default:
+                    throw new FormatException($"The {format} format string is error");
+            }
+        }
+
     }
 }
