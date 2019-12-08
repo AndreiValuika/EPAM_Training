@@ -5,6 +5,10 @@ namespace BookLib
 {
     public class Book : IEquatable<Book>, IComparable, IFormattable
     {
+        public Book()
+        {
+        }
+
         public Book(string isbn, string title, string author, string publisher, int pages, int year, float price)
         {
             ISBN = isbn;
@@ -124,7 +128,7 @@ namespace BookLib
                 case "IATPYС":
                     return $"ISBN: {ISBN}, Author: {Author}, Title: {Title}, Publisher: {Publisher}, Year: {Year.ToString(formatProvider)}, Price: {Price.ToString(formatProvider)}";
                 case "ATPYС":
-                    return $"Author: {Author}, Title: {Title}, Publisher: {Publisher}, Price: {Price.ToString(formatProvider)}";
+                    return $"Author: {Author}, Title: {Title}, Publisher: {Publisher}, Year: {Year.ToString(formatProvider)}, Price: {Price.ToString(formatProvider)}";
                 case "Full":
                     return $"ISBN: {ISBN}, Author: {Author}, Title: {Title}, Publisher: {Publisher}, Year: {Year.ToString(formatProvider)}, Number of pages: {Pages.ToString(formatProvider)}, Price: {Price.ToString(formatProvider)}";
                 default:

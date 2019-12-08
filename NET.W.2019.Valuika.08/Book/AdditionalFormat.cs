@@ -42,7 +42,7 @@ namespace BookLib
             switch (format)
             {
                 case "IAT":
-                    return $"ISBN:{book.ISBN}, {book.ToString("AT", null)}";
+                    return $"ISBN: {book.ISBN}, {book.ToString("AT", null)}";
 
                 case "ATC":
                     return $"{book.ToString("AT", null)}, Price: {book.Price.ToString(formatProvider)}";
