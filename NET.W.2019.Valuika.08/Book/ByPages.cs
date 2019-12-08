@@ -2,11 +2,11 @@
 
 namespace BookLib
 {
-    public class ByISBN : IComparer<Book>
+    public class ByPages : IComparer<Book>
     {
         public int Compare(Book x, Book y)
         {
-            return x.ISBN.CompareTo(y.ISBN);
+            return x.Pages.CompareTo(y.Pages);
         }
     }
 }

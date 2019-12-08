@@ -2,7 +2,8 @@
 {
     public class Filter
     {
-        public Filter(string iSBN = "",
+        public Filter(
+            string isbn = "",
             string author = "",
             string title = "",
             string publisher = "",
@@ -10,7 +11,7 @@
             int pages = -1,
             float price = -1)
         {
-            ISBN = iSBN;
+            ISBN = isbn;
             Author = author;
             Title = title;
             Publisher = publisher;

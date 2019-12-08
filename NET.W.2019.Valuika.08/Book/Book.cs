@@ -131,6 +131,5 @@ namespace BookLib
                     throw new FormatException($"The {format} format string is error");
             }
         }
-
     }
 }

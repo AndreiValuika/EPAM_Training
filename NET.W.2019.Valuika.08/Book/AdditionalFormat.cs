@@ -1,16 +1,10 @@
-﻿using BookLib;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//using BookLogic;
 
 namespace BookLib
 {
     /// <summary>
-    /// Containsadditional methods for Book representation.
+    /// Contains additional methods for Book representation.
     /// </summary>
     public class BookFormat : IFormatProvider, ICustomFormatter
     {
@@ -20,6 +14,7 @@ namespace BookLib
             {
                 return this;
             }
+
             return null;
         }
 
@@ -36,13 +31,13 @@ namespace BookLib
                     throw new FormatException(nameof(ex));
                 }
             }
+
             Book book = arg as Book;
 
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
             {
                 return book.ToString();
             }
-
 
             switch (format)
             {
@@ -61,6 +56,7 @@ namespace BookLib
                     {
                         throw new FormatException(nameof(ex));
                     }
+
                     break;
             }
 
@@ -79,7 +75,7 @@ namespace BookLib
                 return arg.ToString();
             }
 
-            return String.Empty;
+            return string.Empty;
         }
     }
 }

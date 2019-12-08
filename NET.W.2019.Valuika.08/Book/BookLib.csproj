@@ -45,6 +45,12 @@
     <Compile Include="Book.cs" />
     <Compile Include="BookListService.cs" />
     <Compile Include="BookListStorage.cs" />
+    <Compile Include="ByAuthor.cs" />
+    <Compile Include="ByPages.cs" />
+    <Compile Include="ByPrice.cs" />
+    <Compile Include="ByPublisher.cs" />
+    <Compile Include="ByTitle.cs" />
+    <Compile Include="ByYear.cs" />
     <Compile Include="ComparerList.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
