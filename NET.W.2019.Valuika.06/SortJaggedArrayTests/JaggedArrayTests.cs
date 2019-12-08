@@ -1,43 +1,42 @@
 ﻿using NUnit.Framework;
-using SortJaggedArray;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SortJaggedArray.Tests
 {
     [TestFixture()]
     public class JaggedArrayTests
     {
-        int[][] _test; 
+        int[][] _test1;
+        int[][] _test2;
         [SetUp]
-        public void Init() 
+        public void Init()
         {
-            _test = new int[4][]
+            _test1 = new int[4][]
             {
                 new int[] { 10, 20, 30, 40, 50, 60 },
                 new int[] { 11, 21, 31 },
                 new int[] { 12, 22, 32, 42, 52, 62 },
                 new int[] { 100 }
             };
+            _test2 = (int[][])_test1.Clone();
         }
         [Test]
-        public void SortFTest()
+        public void SortSumTest()
         {
-           int[][]  expend = new int[4][]
-           {
+            int[][] expend = new int[4][]
+            {
                new int[] { 11, 21, 31 },
                new int[] { 100 },
                new int[] { 10, 20, 30, 40, 50, 60 },
                new int[] { 12, 22, 32, 42, 52, 62 },
-           };
-           JaggedArray.SortF(_test, false);
-           Assert.AreEqual(_test,expend);
+            };
+
+            JaggedArrayInterface.SortInterface(_test1, false, new CompRowsSum());
+            JaggedArrayDelegate.SortDelegate(_test2, false, new CompRowsSum().Compare);
+            Assert.AreEqual(_test1, _test2);
+            Assert.AreEqual(_test1, expend);
         }
         [Test]
-        public void SortFTestInvert()
+        public void SortSumTestInvert()
         {
             int[][] expend = new int[4][]
             {
@@ -46,8 +45,10 @@ namespace SortJaggedArray.Tests
                new int[] { 100 },
                new int[] { 11, 21, 31 },
             };
-            JaggedArray.SortF(_test, true);
-            Assert.AreEqual(_test, expend);
+            JaggedArrayInterface.SortInterface(_test1, true, new CompRowsSum());
+            JaggedArrayDelegate.SortDelegate(_test2, true, new CompRowsSum().Compare);
+            Assert.AreEqual(_test1, _test2);
+            Assert.AreEqual(_test1, expend);
         }
 
         [Test]
@@ -60,8 +61,11 @@ namespace SortJaggedArray.Tests
                new int[] { 12, 22, 32, 42, 52, 62 },
                new int[] { 100 },
             };
-            JaggedArray.SortMin(_test, false);
-            Assert.AreEqual(_test, expend);
+
+            JaggedArrayInterface.SortInterface(_test1, false, new CompRowsMin());
+            JaggedArrayDelegate.SortDelegate(_test2, false, new CompRowsMin().Compare);
+            Assert.AreEqual(_test1, _test2);
+            Assert.AreEqual(_test1, expend);
         }
 
         [Test]
@@ -75,8 +79,10 @@ namespace SortJaggedArray.Tests
                new int[] { 10, 20, 30, 40, 50, 60 },
             };
 
-            JaggedArray.SortMin(_test, true);
-            Assert.AreEqual(_test, expend);
+            JaggedArrayDelegate.SortDelegate(_test2, true, new CompRowsMin().Compare);
+            JaggedArrayInterface.SortInterface(_test1, true, new CompRowsMin());
+            Assert.AreEqual(_test1, _test2);
+            Assert.AreEqual(_test1, expend);
         }
 
         [Test]
@@ -89,9 +95,12 @@ namespace SortJaggedArray.Tests
                new int[] { 12, 22, 32, 42, 52, 62 },
                new int[] { 100 },
             };
-            JaggedArray.SortMax(_test, false);
-            Assert.AreEqual(_test, expend);
+            JaggedArrayInterface.SortInterface(_test1, false, new CompRowsMax());
+            JaggedArrayDelegate.SortDelegate(_test2, false, new CompRowsMax().Compare);
+            Assert.AreEqual(_test1, _test2);
+            Assert.AreEqual(_test1, expend);
         }
+
 
         [Test]
         public void SortMaxTestInvert()
@@ -103,8 +112,11 @@ namespace SortJaggedArray.Tests
                new int[] { 10, 20, 30, 40, 50, 60 },
                new int[] { 11, 21, 31 },
             };
-            JaggedArray.SortMax(_test, true);
-            Assert.AreEqual(_test, expend);
+            JaggedArrayInterface.SortInterface(_test2, true, new CompRowsMax());
+            JaggedArrayDelegate.SortDelegate(_test1, true, new CompRowsMax().Compare);
+            Assert.AreEqual(_test1, _test2);
+            Assert.AreEqual(_test1, expend);
+
         }
     }
 }
