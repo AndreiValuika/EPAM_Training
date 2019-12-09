@@ -2,11 +2,11 @@
 
 namespace SortJaggedArray.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class JaggedArrayTests
     {
-        int[][] _test1;
-        int[][] _test2;
+        private int[][] _test1;
+        private int[][] _test2;
         [SetUp]
         public void Init()
         {
@@ -19,6 +19,7 @@ namespace SortJaggedArray.Tests
             };
             _test2 = (int[][])_test1.Clone();
         }
+
         [Test]
         public void SortSumTest()
         {
@@ -35,6 +36,7 @@ namespace SortJaggedArray.Tests
             Assert.AreEqual(_test1, _test2);
             Assert.AreEqual(_test1, expend);
         }
+
         [Test]
         public void SortSumTestInvert()
         {
@@ -101,7 +103,6 @@ namespace SortJaggedArray.Tests
             Assert.AreEqual(_test1, expend);
         }
 
-
         [Test]
         public void SortMaxTestInvert()
         {
@@ -116,7 +117,6 @@ namespace SortJaggedArray.Tests
             JaggedArrayDelegate.SortDelegate(_test1, true, new CompRowsMax().Compare);
             Assert.AreEqual(_test1, _test2);
             Assert.AreEqual(_test1, expend);
-
         }
     }
 }

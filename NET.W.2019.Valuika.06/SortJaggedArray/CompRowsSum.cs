@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SortJaggedArray
 {
-   public class CompRowsSum : IComparer<int[]>
+    public class CompRowsSum : IComparer<int[]>
     {
         public int Compare(int[] x, int[] y)
         {

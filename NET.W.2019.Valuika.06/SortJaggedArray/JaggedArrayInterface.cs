@@ -5,10 +5,9 @@ namespace SortJaggedArray
 {
     public static class JaggedArrayInterface
     {
-
-        public static void SortInterface(int[][] array, bool invert, IComparer<int[]> Comp)
+        public static void SortInterface(int[][] array, bool invert, IComparer<int[]> comp)
         {
-            SortDelegate(array, invert, Comp.Compare);
+            SortDelegate(array, invert, comp.Compare);
         }
 
         private static void SortDelegate(int[][] array, bool invert, Comparison<int[]> comparison)
@@ -31,6 +30,5 @@ namespace SortJaggedArray
             first = second;
             second = temp;
         }
-
     }
 }
