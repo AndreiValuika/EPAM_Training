@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TimerLib
+{
+    public class TimerArgs:EventArgs
+    {
+        public string msg;
+
+        public TimerArgs(string msg)
+        {
+            this.msg = msg;
+        }
+    }
+}

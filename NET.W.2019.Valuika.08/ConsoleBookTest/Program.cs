@@ -8,10 +8,10 @@ namespace ConsoleBookTest
     {
         static void Main(string[] args)
         {
-            Book book = new Book("1111", "Title1", "Author1", "Publisher1", 20, 1975, 15f);
-
+            BookLib.Book book = new BookLib.Book("1111", "Title1", "Author1", "Publisher1", 20, 1975, 15f);
+            var logger = new NLogger();
             var storage = new BookListStorage("ListBook.bin");
-            var service = new BookListService(storage);
+            var service = new BookListService(storage,logger);
             service.AddBook(book);
             service.AddBook(new Book("3333", "Title2", "Author2", "Publisher2", 200, 1975, 18f));
             service.AddBook(new Book("5555", "Title3", "Author2", "Publisher2", 254, 1975, 18f));
@@ -58,7 +58,6 @@ namespace ConsoleBookTest
                 Console.WriteLine(item.ToString("Full", CultureInfo.InvariantCulture));
                 Console.WriteLine(item.ToString("Full", CultureInfo.CurrentCulture));
                 Console.WriteLine(item.ToString("ATPY", CultureInfo.InvariantCulture));
-                Console.WriteLine("--");
                 Console.WriteLine(String.Format(new BookFormat(), "{0:IAT}", item));
                 Console.WriteLine(String.Format(new BookFormat(), "{0:ATC}", item));
             }
