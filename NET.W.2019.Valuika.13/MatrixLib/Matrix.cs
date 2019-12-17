@@ -107,17 +107,27 @@ namespace MatrixLib
             OnChangeValue(eventMessage);
         }
 
-        public class MatrixArgs : EventArgs
+        public SquareMatrix<T> Add(SquareMatrix<T> matrix)
         {
-            private string message;
-
-            public string Message { get => message; }
-
-            public MatrixArgs(string message)
+            if (Size != matrix.Size)
             {
-                this.message = message;
+                return this;
             }
+
+            var result = new SquareMatrix<T>(Size);
+
+            for (var i = 0; i < Size; i += 1)
+            {
+                for (var j = 0; j < Size; j += 1)
+                {
+                    result.Set(i, j, (dynamic)this.Get(i, j) + (dynamic)matrix.Get(i, j));
+                }
+            }
+
+            return result;
         }
+
+
 
 
     }

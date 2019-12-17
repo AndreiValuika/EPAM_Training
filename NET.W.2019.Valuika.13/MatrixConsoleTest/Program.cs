@@ -11,27 +11,38 @@ namespace MatrixConsoleTest
     {
         static void Main(string[] args)
         {
-            SquareMatrix<int> squareMatrix = new SquareMatrix<int>(5);
+            SquareMatrix<int> squareMatrix = new SquareMatrix<int>(3);
             squareMatrix.Set(1, 2, 3);
-            SymmetrixMatrix<int> symmetrixMatrix = new SymmetrixMatrix<int>(5);
+            SymmetrixMatrix<int> symmetrixMatrix = new SymmetrixMatrix<int>(3);
             symmetrixMatrix.Set(1, 2, 3);
 
             Console.WriteLine(squareMatrix.ToString());
             Console.WriteLine();
-            Console.WriteLine(symmetrixMatrix.ToString());
+            
             DiagonalMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(3);
 
-            int[,] vs = {
+            int[,] diagMatrix = {
                           { 1, 0, 0 },
                           { 0, 4, 0 },
-                          { 0, 0, 5} 
+                          { 0, 0, 5 } 
                         };
+
+            int[,] symmMatrix = {
+                          { 1, 2, 3 },
+                          { 0, 4, 0 },
+                          { 0, 0, 5 }
+                        };
+
             diagonalMatrix.ChengeValue += delegate (object obj, string msg) { Console.WriteLine(msg); };
 
-            if (diagonalMatrix.SetMatrix(vs)) Console.WriteLine("OK");
-            diagonalMatrix.Set(2, 4);
-            Console.WriteLine(diagonalMatrix.Get(2));
-            Console.WriteLine(diagonalMatrix.ToString());
+            if (diagonalMatrix.SetMatrix(diagMatrix)) Console.WriteLine("OK");
+            symmetrixMatrix.SetMatrix(symmMatrix);
+            Console.WriteLine(symmetrixMatrix.ToString());
+            Console.WriteLine();
+            var sumMatrix=symmetrixMatrix.Add(diagonalMatrix);
+
+          
+            Console.WriteLine(sumMatrix.ToString());
             Console.ReadKey();
 
         }
