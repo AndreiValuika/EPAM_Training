@@ -9,10 +9,5 @@ namespace TimerLib
     public class TimerArgs:EventArgs
     {
         public string msg;
-
-        public TimerArgs(string msg)
-        {
-            this.msg = msg;
-        }
     }
 }

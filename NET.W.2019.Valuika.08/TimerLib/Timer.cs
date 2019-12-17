@@ -21,15 +21,12 @@ namespace TimerLib
 
         public void OnFinish(object sender, TimerArgs e) 
         {
-            if (Time!=null)
-            {
-                Time(sender, e); 
-            }
+            Time?.Invoke(sender, e);
         }
         public void Start() 
         {
             Thread.Sleep(1000 * _seconds);
-            OnFinish(this, new TimerArgs(_msg));
+            OnFinish(this, new TimerArgs() {msg = _msg });
 
         }
 
