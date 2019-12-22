@@ -116,9 +116,9 @@ namespace MatrixLib
 
             var result = new SquareMatrix<T>(Size);
 
-            for (var i = 0; i < Size; i += 1)
+            for (var i = 0; i < Size; i++)
             {
-                for (var j = 0; j < Size; j += 1)
+                for (var j = 0; j < Size; j++)
                 {
                     result.Set(i, j, (dynamic)this.Get(i, j) + (dynamic)matrix.Get(i, j));
                 }
