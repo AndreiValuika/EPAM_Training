@@ -14,8 +14,12 @@ namespace BLL.Interface.Entities
         public int Points { get; set; }
         public int BonusValue { get; set; }
 
-        protected Account(string accountNumber, string name)
+        protected Account(string accountNumber, string name, decimal amount, int points)
         {
+          
+                Amount = amount;
+                Points = points;
+            AccountNumber = accountNumber;
             Name = name;
         }
         

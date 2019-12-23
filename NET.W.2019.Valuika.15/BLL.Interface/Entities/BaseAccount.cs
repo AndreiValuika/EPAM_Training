@@ -8,40 +8,22 @@ namespace BLL.Interface.Entities
 {
     public class BaseAccount : Account
     {
-        public BaseAccount(string accountNumber, string name) : base(accountNumber, name)
+        public BaseAccount(string accountNumber, string name, decimal amaunt, int points) : base(accountNumber, name, amaunt,  points)
         {
+            BonusValue = 1;
         }
 
-       
+        public override int CalculatePointsForDeposit(int bonusValue) => 10 * bonusValue;
+        public override int CalculatePointsForWithdraw(int bonusValue) => 10 * bonusValue;
 
-        public override int CalculatePointsForDeposit(int bonusValue)
-        {
-            throw new NotImplementedException();
-        }
+        protected override bool IsValidBalance(decimal value)
+            => value >= 0;
 
-        public override int CalculatePointsForWithdraw(int bonusValue)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
 
         public override string ToString()
         {
             return "Type : Base, " + base.ToString();
         }
 
-        protected override bool IsValidBalance(decimal value)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

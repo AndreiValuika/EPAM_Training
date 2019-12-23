@@ -12,52 +12,67 @@ namespace BLL.ServiceImplementation
     public class AccountService : IAccountService
     {
         private IRepository repository;
+
+        public AccountService(IRepository repository)
+        {
+            this.repository = repository;
+        }
+
         public void CloseAccount(Account account)
         {
             throw new NotImplementedException();
         }
 
-        public void DepositAccount(Account account, int count)
+        private Account GetAccount(string id) 
         {
-            throw new NotImplementedException();
+            return Mappers.Mapper.ConvertToAccount(repository.GetAccounts().First(n => n.AccountNumber.Equals(id)));
         }
 
-        public void DepositAccount(string accountNumber, int v)
+        public void DepositAccount(string accountNumber, decimal v)
         {
-            throw new NotImplementedException();
+            GetAccount(accountNumber).Deposit(v);
         }
 
         public IEnumerable<Account> GetAllAccounts()
         {
-            throw new NotImplementedException();
+            List<Account> accounts = new List<Account>();
+            foreach (var item in repository.GetAccounts())
+            {
+                accounts.Add(Mappers.Mapper.ConvertToAccount(item));
+            }
+            return accounts;
         }
+        public void OpenAccount(string name, AccountType accountType, IAccountNumberCreateService createService) 
+        {
+            var tempAccount = CreateAccount(name, accountType, createService);
+            repository.AddAccount(Mappers.Mapper.ConvertToDtoAccount(tempAccount));
 
-        public void OpenAccount(string name, AccountType accountType, IAccountNumberCreateService createService)
+        }
+        private Account CreateAccount(string name, AccountType accountType, IAccountNumberCreateService createService)
         {
             switch (accountType)
             {
                 case AccountType.Base:
-                    repository.AddAccount( new BaseAccount(createService.GetId(), name));
+                    return new BaseAccount(createService.GetId(), name,0,0);
                     
                 case AccountType.Silver:
-                    return new SilverAccount(createService.GetId(), name);
+                    return new SilverAccount(createService.GetId(), name,0,0);
                     
                 case AccountType.Platinum:
-                    return new PlatinumAccount(createService.GetId(), name);
+                    return new PlatinumAccount(createService.GetId(), name,0,0);
                    
                 default:
                     throw new ArgumentException("Not supported type. ");
             }
         }
 
-        //public void WithdrawAccount(Account account, int count)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        
 
-        public void WithdrawAccount(string accountNumber, int v)
+        public void WithdrawAccount(string accountNumber, decimal v)
         {
-            throw new NotImplementedException();
+            GetAccount(accountNumber).Withdraw(v);
         }
+
+       
     }
 }

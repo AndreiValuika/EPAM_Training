@@ -11,16 +11,18 @@ namespace DAL.Fake.Repositories
 {
     public class FakeRepository:IRepository
     {
-        private List<Account> accounts;
+        private List<AccountDTO> accounts = new List<AccountDTO>();
+
+        
 
         public void AddAccount(AccountDTO account)
         {
-            throw new NotImplementedException();
+            accounts.Add(account);
         }
 
         public IEnumerable<AccountDTO> GetAccounts()
         {
-            throw new NotImplementedException();
+            return accounts;
         }
 
         public void RemoveAccount(AccountDTO account)
